@@ -3,6 +3,9 @@ from listes import *
 from piles import *
 
 class Carte:
+# Cette classe représente une carte de jeu.
+# Elle a des attributs tels que la hauteur (2, 3, ..., roi, as) et la couleur (coeur, carreau, trefle, pique).
+    
     valides_hauteurs = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "valet", "dame", "roi", "as"]
     valides_couleurs = ["coeur", "carreau", "trefle", "pique"]
     symboles_couleurs = {"coeur": "♥", "carreau": "♦", "trefle": "♣", "pique": "♠"}
@@ -34,20 +37,29 @@ class Carte:
             return int(self._hauteur)
 
 class FileDouble:
+# Cette classe représente une file double utilisée pour le mélange et la distribution de cartes.
+    
     def __init__(self):
         self.pioche = Pile()
         self.defausse = Pile()
 
     def enfiler(self, valeur):
+        # Ajoute une valeur à la file double.
+        
         self.defausse.empiler(valeur)
 
     def defiler(self):
+        # Retire une valeur de la file double.
+        
         if self.pioche.est_vide():
             while not self.defausse.est_vide():
                 self.pioche.empiler(self.defausse.dépiler())
         return self.pioche.dépiler() if not self.pioche.est_vide() else None
 
 class Paquet:
+# Cette classe représente un paquet de cartes.
+# Elle génère un paquet complet de cartes, les mélange et les distribue.
+    
     def __init__(self):
         self.file = FileDouble()
         for couleur in Carte.valides_couleurs:
@@ -55,6 +67,8 @@ class Paquet:
                 self.file.enfiler(Carte(hauteur, couleur))
 
     def melange(self):
+        # Mélange le paquet de cartes.
+        
         cartes = []
         while True:
             carte = self.file.defiler()
@@ -66,12 +80,18 @@ class Paquet:
             self.file.enfiler(carte)
 
     def distribue(self, n):
+        # Distribue n cartes du paquet.
+        
         return [self.file.defiler() for _ in range(n)]
 
     def affichages(self):
+        # Affiche l'état actuel de la pioche et de la défausse.
         return f"Pioche: {[str(carte) for carte in self.file.pioche.liste_chainee]}, Defausse: {[str(carte) for carte in self.file.defausse.liste_chainee]}"
 
 class Main:
+# Cette classe représente la main d'un joueur.
+# Elle peut trier les cartes, ajouter une carte à la main ou retirer une carte de la main.
+    
     def __init__(self, cartes=[]):
         self.cartes = cartes
 
@@ -98,6 +118,9 @@ class Main:
 
 
 class Joueur:
+# Cette classe représente un joueur.
+# Elle peut calculer le score de la main et choisir une carte à jouer.
+
     def __init__(self, pseudo):
         self.pseudo = pseudo
         self.main = Main([])
@@ -118,8 +141,10 @@ class Joueur:
         return self.main.cartes.pop(int(carte_choisie))
 
 
-
 class JoueurIA(Joueur):
+# Cette classe représente un joueur IA.
+# Elle hérite des fonctionnalités du joueur standard et joue automatiquement en retirant la carte du haut.
+
     def jouer(self):
         if not self.main.cartes:
             print("Erreur: Pas de cartes dans la main.")
