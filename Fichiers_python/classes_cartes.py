@@ -91,4 +91,3 @@ class JoueurIA(Joueur):
     def jouer_automatiquement(self):
         return self.main.cartes.pop()
 
-# Vous pouvez maintenant tester le code en créant différentes instances de ces classes et en exécutant les méthodes correspondantes.
