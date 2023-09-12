@@ -3,6 +3,9 @@ from listes import *
 from piles import *
 
 class Carte:
+# Classe représentant une carte de jeu.
+# Elle a des valeurs de hauteur, de couleur, et une méthode pour afficher la carte sous forme de chaîne de caractères.
+    
     valides_hauteurs = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "valet", "dame", "roi", "as"]
     valides_couleurs = ["coeur", "carreau", "trefle", "pique"]
     symboles_couleurs = {"coeur": "♥", "carreau": "♦", "trefle": "♣", "pique": "♠"}
@@ -26,20 +29,29 @@ class Carte:
         return f'Carte("{self._hauteur}", "{self._couleur}")'
 
 class FileDouble:
+# Classe représentant une file double utilisée pour gérer les cartes.
+# Elle a une pioche et une défausse pour gérer les cartes.
+ 
     def __init__(self):
         self.pioche = Pile()
         self.defausse = Pile()
 
     def enfiler(self, valeur):
+        # Ajoute une valeur à la défausse.
         self.defausse.empiler(valeur)
 
     def defiler(self):
+        # Récupère une carte de la pioche ou la récupère de la défausse si la pioche est vide.
+        
         if self.pioche.est_vide():
             while not self.defausse.est_vide():
                 self.pioche.empiler(self.defausse.dépiler())
         return self.pioche.dépiler() if not self.pioche.est_vide() else None
 
 class Paquet:
+    # Classe représentant un paquet de cartes.
+    # Elle génère un paquet complet de cartes, les mélange et les distribue.
+    
     def __init__(self):
         self.file = FileDouble()
         for couleur in Carte.valides_couleurs:
@@ -47,6 +59,7 @@ class Paquet:
                 self.file.enfiler(Carte(hauteur, couleur))
 
     def melange(self):
+        # Mélange le paquet de cartes.
         cartes = []
         while True:
             carte = self.file.defiler()
@@ -58,6 +71,8 @@ class Paquet:
             self.file.enfiler(carte)
 
     def distribue(self, n):
+        # Distribue n cartes du paquet.
+
         return [self.file.defiler() for _ in range(n)]
 
     def affichages(self):
