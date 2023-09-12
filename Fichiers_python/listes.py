@@ -99,9 +99,3 @@ def affiche_liste_rec(liste):
       val = tête(liste)
       queue_list = affiche_liste_rec(queue(liste))
       return f"{val} {queue_list}"
-
-def liste_chaînée(liste_python):
-    if not liste_python:  # Si la liste est vide
-        return liste_vide()  # Retourner une liste chaînée vide
-    # Sinon on crée une cellule avec l'élément actuel et le reste de la liste
-    return cellule(liste_python[0], liste_chaînée(liste_python[1:]))
