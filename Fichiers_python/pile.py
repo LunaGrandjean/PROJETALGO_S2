@@ -11,12 +11,12 @@ class Pile:
     def __str__(self) -> str:
         return affiche_liste_rec(self.liste_chainee)
 
+
     def empiler(self, valeur):
         self.liste_chainee = cellule(valeur, self.liste_chainee)
         self._taille +=1
 
     def dépiler(self):
-        
         if self.est_vide():
             raise IndexError("La pile est vide")
         valeur = tête(self.liste_chainee)
@@ -30,6 +30,7 @@ class Pile:
 
     def taille(self):
         return self._taille #longueur(self.liste_chainee)
+    
 
     def consulter(self):
         if self.est_vide():
@@ -39,4 +40,3 @@ class Pile:
     def vider(self):
         self.liste_chainee = liste_vide()
         self._taille = 0
-        
