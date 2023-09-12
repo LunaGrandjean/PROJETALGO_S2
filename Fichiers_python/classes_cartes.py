@@ -64,7 +64,7 @@ class Paquet:
         return f"Pioche: {[str(carte) for carte in self.file.pioche.liste_chainee]}, Defausse: {[str(carte) for carte in self.file.defausse.liste_chainee]}"
 
 class Main:
-    def __init__(self, cartes):
+    def __init__(self, cartes=[]):
         self.cartes = cartes
 
     def trier(self, desc=False, as_fort=True):
@@ -74,20 +74,37 @@ class Main:
             autres_cartes = [carte for carte in self.cartes if carte.hauteur() != "as"]
             self.cartes = autres_cartes + as_carte
 
+    def enfiler(self, carte):
+        self.cartes.append(carte)
+
+    def defiler(self):
+        if self.cartes:
+            return self.cartes.pop(0)
+        return None
+
+    def est_vide(self):
+        return len(self.cartes) == 0
+
     def afficher(self):
         return ", ".join(str(carte) for carte in self.cartes)
+
 
 class Joueur:
     def __init__(self, pseudo):
         self.pseudo = pseudo
         self.score = 0
-        self.main = None
+        self.main = Main([])
 
     def jouer(self):
+        if not self.main.cartes:
+            print(f"{self.pseudo}, vous n'avez pas de cartes en main.")
+            return None
         carte_choisie = input(f"{self.pseudo}, choisissez une carte à jouer (0-{len(self.main.cartes) - 1}): ")
         return self.main.cartes.pop(int(carte_choisie))
 
 class JoueurIA(Joueur):
-    def jouer_automatiquement(self):
+    def jouer(self):
+        if not self.main.cartes:
+            print("Erreur: Pas de cartes dans la main.")
+            return None
         return self.main.cartes.pop()
-
