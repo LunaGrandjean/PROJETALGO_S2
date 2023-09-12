@@ -76,9 +76,14 @@ class Paquet:
         return [self.file.defiler() for _ in range(n)]
 
     def affichages(self):
+        # Affiche l'état actuel de la pioche et de la défausse.
+
         return f"Pioche: {[str(carte) for carte in self.file.pioche.liste_chainee]}, Defausse: {[str(carte) for carte in self.file.defausse.liste_chainee]}"
 
 class Main:
+# Classe représentant la main d'un joueur.
+# Elle peut trier les cartes, ajouter une carte à la main ou retirer une carte de la main.
+
     def __init__(self, cartes=[]):
         self.cartes = cartes
 
@@ -105,6 +110,9 @@ class Main:
 
 
 class Joueur:
+# Classe représentant un joueur.
+# Elle a un pseudo, un score, une main de cartes et une méthode pour jouer une carte.
+    
     def __init__(self, pseudo):
         self.pseudo = pseudo
         self.score = 0
@@ -118,6 +126,9 @@ class Joueur:
         return self.main.cartes.pop(int(carte_choisie))
 
 class JoueurIA(Joueur):
+# Classe représentant un joueur IA.
+# Elle hérite des fonctionnalités du joueur standard et joue automatiquement en retirant la carte du haut.
+    
     def jouer(self):
         if not self.main.cartes:
             print("Erreur: Pas de cartes dans la main.")
