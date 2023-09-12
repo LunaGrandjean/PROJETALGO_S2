@@ -15,9 +15,9 @@ En cas d'égalité, une "bataille" a lieu avec un nombre croissant de cartes en 
 Le premier joueur qui récupère toutes les cartes du jeu gagne.
 Attention aux situations de pat, où un joueur ne peut pas poser de cartes lors d'une bataille.
 
-## Jeu du Président
+## Jeu du Black Jack
 
 ### Règles du jeu :
-https://www.regles-de-jeux.com/regle-du-president/
+https://www.casinosbarriere.com/fr/nos-jeux/jeux-de-table/blackjack.html
 
 
