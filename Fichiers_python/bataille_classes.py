@@ -1,6 +1,6 @@
-from listes import *
-from piles import *
-from classes_cartes import *
+from listes import liste_vide, cellule, tête, queue, est_vide
+from piles import Pile
+from classes_cartes_bataille import Carte, JoueurIA, Paquet
 
 class Bataille:
     def __init__(self):
