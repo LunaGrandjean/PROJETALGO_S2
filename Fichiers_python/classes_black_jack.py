@@ -1,6 +1,6 @@
-from listes import *
-from piles import *
-from classes_cartes import *
+from listes import liste_vide, cellule, tête, queue, est_vide
+from piles import Pile
+from classes_cartes_black_jack import Paquet, Main
 
 class BlackJack:
     def __init__(self, joueur, croupier):
