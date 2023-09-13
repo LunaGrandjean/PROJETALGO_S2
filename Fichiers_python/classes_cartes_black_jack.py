@@ -1,6 +1,6 @@
 from random import shuffle
-from listes import *
-from piles import *
+from listes import liste_vide, cellule, tête, queue, est_vide
+from piles import Pile
 
 class Carte:
 # Cette classe représente une carte de jeu.
