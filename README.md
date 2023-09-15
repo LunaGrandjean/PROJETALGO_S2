@@ -20,4 +20,6 @@ Attention aux situations de pat, où un joueur ne peut pas poser de cartes lors 
 ### Règles du jeu :
 https://www.casinosbarriere.com/fr/nos-jeux/jeux-de-table/blackjack.html
 
+## Par GAUDIN Léo, JOUENNE Maïa & GRANDJEAN Luna.
+
 
